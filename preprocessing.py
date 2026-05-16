@@ -73,9 +73,9 @@ def clean_comment(text):
 
     text = re.sub(r'https?://\S+\b', ' [LINK] ', text) # ссылки
 
-    text = re.sub(r'\s+', r' ', text) # лишние пробелы и отступы
-
     text = re.sub(r'(\n)+', r'\\n', text) # перенос
+
+    text = re.sub(r'\s+', r' ', text) # лишние пробелы и отступы
 
     return text.strip()
 
