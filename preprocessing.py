@@ -5,6 +5,7 @@ import os
 import shortuuid
 import emoji
 import re
+from shared import cyr_alph, special_char
 
 
 def save_data(df: pd.DataFrame, name: str=None, save_to_path: str='') -> None:
@@ -37,9 +38,6 @@ def save_data(df: pd.DataFrame, name: str=None, save_to_path: str='') -> None:
     print(ts.strftime('%Y-%m-%d %H:%M:%S'), f'{CSV_FILENAME} cleaned data: {len(df)} rows', sep='\t')
 
 
-cyr_alph = 'АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя' # кириллический алфавит
-# lat_alph = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz'
-special_char = 'ӘәҒғҚқҢңӨөҰұҮүҺһІі' # специализированные символы казахской письменности
 alph = ''.join(list(cyr_alph + special_char)) # расширенный кириллический алфавит
 
 def clean_comment(text):
