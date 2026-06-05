@@ -1,5 +1,8 @@
 # KazRusCSW
-
+<p align="center">
+<a href="https://huggingface.co/liminovna/KazRusCSW-mbert"><img alt="HuggingFace Model" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-8A2BE2"></a>
+<a href="https://huggingface.co/datasets/liminovna/KazRusCSW-G-T"><img alt="HuggingFace Data" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Data-blue"></a>
+</p>
 :earth_americas: For English version see [below](#overview)
 
 ## Описание
@@ -19,7 +22,9 @@
 
 В этом репозитории собраны основные блокноты и функции. Золотой стандарт с потокенной разметкой и модель для разметки выложена на HF: https://huggingface.co/collections/liminovna/kazruscsw.
 
-❗ проект (и репозитории на github и huggingface) все еще в разработке, поэтому ссылка на текст работы и сам корпус будут опубликованы позже.
+Более подробная информация о файлах в репозиотрии можно найти в файле [project_stucture.md](project_stucture.md).
+
+❗ Проект (и репозитории на github и huggingface) все еще в разработке, поэтому ссылка на текст работы и сам корпус будут опубликованы позже.
 
 ## Overview
 This repository contains code for the KazRusCSW project, which is carried out as part of a master's thesis in the Computational Linguistics program at HSE University, Moscow. The aim of this project is to gather and provide token-level annotation for documents containing Kazakh-Russian code-switching.
@@ -36,5 +41,7 @@ To accomlish this, we have solved numerous tasks:
 - performed a linguistic analysis of the corpus data
 
 The repository contains notebooks for processing and analysis and supplementary functions (in the .py files). The golden data with token-level annotation and a model for token-level annotation are available on HF: https://huggingface.co/collections/liminovna/kazruscsw.
+
+For detailed information on the structure of the project see [project_stucture.md](project_stucture.md).
 
 ❗ The project is still in progress, the paper and the corpus itself will be published later.
