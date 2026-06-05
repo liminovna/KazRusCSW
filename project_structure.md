@@ -28,6 +28,38 @@ The decision to use this model specifically is bassed on the analysis that was c
 After this step we were left with 1,009,159 texts.
 
 - `3__token_annot.ipynb`
-After filtering the 
+After filtering out irrelevant texts, we provide each document with token-level annotation using our [mBERT-based model](https://huggingface.co/liminovna/KazRusCSW-mbert") (also see [notebook](colab_notebooks/model_training) for the training details).
+
+The tagset includes the following tags:
+- `kz` -- Kazakh word
+- `ru` -- Russian word
+- `skz` -- Kazakh word transliterated into Cyrillic alphabeth
+- `ambig` -- word that exists in both languages (context sensitive)
+- `other` -- word from some other language
+- `mixed_kz-ru` -- Kazakh root with Russian inflection
+- `mixed_ru-kz` -- Russian root with Kazakh inflection
+- `univ` -- punctuation and masks we added at the preprocessing stage
+
+Based on the token-level annotation, we keep only those documents that include either
+
+a) both `kz` and `ru`
+
+b) both `skz` and `ru`
+
+c) `mixed_kz-ru` or
+
+d) `mixed_ru-kz`.
+
+After this step we got to keep only 80k documents, which is about 8% of the data we started this stage with.
+
+:warning: Note: the model does poorly at distinguishing the minority tags, which is all of them except `kz`, `ru` and `univ`, since the vast majority of the tokens in the trainig dataset had these tags. 
 
 - `4__metrics.ipynb`
+In this notebook, we calculate the following code-mixing metrics:
+- Average Code-Mixing Index (CMI Avg)
+- Average switch-points (SP Avg)
+- Multilingual Index (M-index)
+- Probability of Switching (I-index)
+- Burstiness
+- Language Entropy (LE)
+- Span Entropy (SE)
