@@ -3,6 +3,7 @@
 <a href="https://huggingface.co/liminovna/KazRusCSW-mbert"><img alt="HuggingFace Model" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-8A2BE2"></a>
 <a href="https://huggingface.co/datasets/liminovna/KazRusCSW-G-T"><img alt="HuggingFace Data" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Data-blue"></a>
 </p>
+
 :earth_americas: For English version see [below](#overview)
 
 ## Описание
@@ -22,7 +23,7 @@
 
 В этом репозитории собраны основные блокноты и функции. Золотой стандарт с потокенной разметкой и модель для разметки выложена на HF: https://huggingface.co/collections/liminovna/kazruscsw.
 
-Более подробная информация о файлах в репозиотрии можно найти в файле [project_stucture.md](project_stucture.md).
+Более подробная информация о файлах в репозитории можно найти в файле [project_stucture.md](project_stucture.md).
 
 ❗ Проект (и репозитории на github и huggingface) все еще в разработке, поэтому ссылка на текст работы и сам корпус будут опубликованы позже.
 
