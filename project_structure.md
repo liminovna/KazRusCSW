@@ -67,6 +67,85 @@ d) `mixed_ru-kz`.
 - Language Entropy (LE)
 - Span Entropy (SE)
 
+## Эксперименты и анализ
+
+Чтобы определить лучший метод для а) фильтрации "нерелевантных" текстов и б) выявления текстов с переключением кодов основываясь только на вероятностях, возвращенных LID-моделями, мы применили и проанализировали 8 существующих LID-моделей на золотом стандарте [KazRusCSW-G-D]((https://docs.google.com/spreadsheets/d/1pIV0z6GWbt_xTweBXHIUXmU4K-84XiTseFbobv7K_xE/edit?usp=sharing)) (ссылка на google spreadsheets).
+
+Анализируемые методы:
+- cld2
+- cld3
+- fasttext (fast-langdetect)
+- lingua
+- mediapipe
+- fasttext (nllb)
+- fasttext (glotlid)
+- словарный метод (разработан нами)
+
+В папке `colab_notebooks/experiments` содержится два блокнота -- в первом представлен процесс обработки золотых данных 8-ю методами; во втором -- анализ результатов. В нем мы отвечаем на несколько вопросов о том, как модели реагируют на тексты определенных тегов, а также пытаемся выявить тексты с переключением, основываясь только на вероятностях для казахского и русского, которые вернули модели.
+
+Анализ показал, что мы не можем сделать вывод о наличии переключения кодов исходя только из вероятностей. Визуализация ниже иллюстрирует, почему:
+
+![](readme_assets/probabilities.png)
+
+## Model training
+
+Мы нуждались в модели, которая могла бы определять языковой тег (see the tagset [above](#text%20preprocessing)) для каждого токена в тексте. Для этого мы (до)обучили три модели: CRF, mBERT and XLM-RoBERTa. Процесс обучения см. в блокнотах `colab_notebooks/model_training/*`.
+
+Качество получившихся моделей:
+- KazRusCSW-crf
+```
+               precision    recall  f1-score   support
+
+       ambig      0.672     0.558     0.610       480
+          kz      0.958     0.968     0.963      5448
+ mixed_kz-ru      0.909     0.263     0.408        38
+ mixed_ru-kz      0.500     0.333     0.400        15
+       other      0.775     0.784     0.779       268
+          ru      0.964     0.982     0.973      5914
+         skz      0.772     0.473     0.587       150
+        univ      0.999     0.999     0.999      3201
+
+    accuracy                          0.957     15514
+   macro avg      0.819     0.670     0.715     15514
+weighted avg      0.955     0.957     0.955     15514
+```
+
+- KazRusCSW-mbert
+```
+              precision    recall  f1-score   support
+
+       ambig     0.5664    0.7375    0.6407       480
+          kz     0.9707    0.9559    0.9633      5448
+ mixed_kz-ru     0.4615    0.1579    0.2353        38
+ mixed_ru-kz     0.0000    0.0000    0.0000        15
+       other     0.8992    0.7985    0.8458       268
+          ru     0.9644    0.9819    0.9731      5904
+         skz     0.6937    0.5133    0.5900       150
+        univ     0.9990    0.9803    0.9896      3200
+
+    accuracy                         0.9542     15503
+   macro avg     0.6944    0.6407    0.6547     15503
+weighted avg     0.9555    0.9542    0.9541     15503
+```
+
+- KazRusCSW-xlmroberta
+```
+              precision    recall  f1-score   support
+
+       ambig     0.6221    0.7167    0.6660       480
+          kz     0.9669    0.9666    0.9668      5448
+ mixed_kz-ru     0.0000    0.0000    0.0000        38
+ mixed_ru-kz     0.0000    0.0000    0.0000        15
+       other     0.6727    0.8284    0.7425       268
+          ru     0.9745    0.9829    0.9787      5914
+         skz     0.7320    0.4733    0.5749       150
+        univ     0.9994    0.9750    0.9870      3201
+
+    accuracy                         0.9564     15514
+   macro avg     0.6209    0.6179    0.6145     15514
+weighted avg     0.9552    0.9564    0.9552     15514
+```
+
 # Project structure
 This repository includes notebooks for text processing, experiments and analysis, and notebooks for model training.
 
@@ -130,3 +209,82 @@ In this notebook, we calculate the following code-mixing metrics:
 - Burstiness
 - Language Entropy (LE)
 - Span Entropy (SE)
+
+## Experiments and analysis
+
+To find the best method to a) filter out irrelevant texts and b) see if we can elicit texts that contain code-switching based on the probabilities the LID-models return, we applied and analyzed 8 pre-existing LID-models on the golden dataset [KazRusCSW-G-D]((https://docs.google.com/spreadsheets/d/1pIV0z6GWbt_xTweBXHIUXmU4K-84XiTseFbobv7K_xE/edit?usp=sharing)) (linked to google spreadsheets).
+
+The methods we checked:
+- cld2
+- cld3
+- fasttext (fast-langdetect)
+- lingua
+- mediapipe
+- fasttext (nllb)
+- fasttext (glotlid)
+- dictionary-based method (self-implemented)
+
+In the folder `colab_notebooks/experiments`, there are two notebooks -- the first one contains the application of the 8 methods to the golden data, the second one provides analysis. In the latter we try to answer a fixed set of questions regarding how the models react to documents with certain tags, and also try to elicit the documents with code-switching based purely on the probabilities of Kazakh and Russian returned by the models.
+
+The analysis showed that we cannot infer purely from the probabilities whether the text contains code-switching. The figure below illustrates why:
+
+![](readme_assets/probabilities.png)
+
+## Model training
+
+We needed a model that is able to determine the language tag (see the tagset [above](#text%20preprocessing)) for every token in text. For that, we tried three models: CRF, mBERT and XLM-RoBERTa. Details on training/finetuning can be found at `colab_notebooks/model_training`.
+
+Here are the metrics:
+- KazRusCSW-crf
+```
+               precision    recall  f1-score   support
+
+       ambig      0.672     0.558     0.610       480
+          kz      0.958     0.968     0.963      5448
+ mixed_kz-ru      0.909     0.263     0.408        38
+ mixed_ru-kz      0.500     0.333     0.400        15
+       other      0.775     0.784     0.779       268
+          ru      0.964     0.982     0.973      5914
+         skz      0.772     0.473     0.587       150
+        univ      0.999     0.999     0.999      3201
+
+    accuracy                          0.957     15514
+   macro avg      0.819     0.670     0.715     15514
+weighted avg      0.955     0.957     0.955     15514
+```
+
+- KazRusCSW-mbert
+```
+              precision    recall  f1-score   support
+
+       ambig     0.5664    0.7375    0.6407       480
+          kz     0.9707    0.9559    0.9633      5448
+ mixed_kz-ru     0.4615    0.1579    0.2353        38
+ mixed_ru-kz     0.0000    0.0000    0.0000        15
+       other     0.8992    0.7985    0.8458       268
+          ru     0.9644    0.9819    0.9731      5904
+         skz     0.6937    0.5133    0.5900       150
+        univ     0.9990    0.9803    0.9896      3200
+
+    accuracy                         0.9542     15503
+   macro avg     0.6944    0.6407    0.6547     15503
+weighted avg     0.9555    0.9542    0.9541     15503
+```
+
+- KazRusCSW-xlmroberta
+```
+              precision    recall  f1-score   support
+
+       ambig     0.6221    0.7167    0.6660       480
+          kz     0.9669    0.9666    0.9668      5448
+ mixed_kz-ru     0.0000    0.0000    0.0000        38
+ mixed_ru-kz     0.0000    0.0000    0.0000        15
+       other     0.6727    0.8284    0.7425       268
+          ru     0.9745    0.9829    0.9787      5914
+         skz     0.7320    0.4733    0.5749       150
+        univ     0.9994    0.9750    0.9870      3201
+
+    accuracy                         0.9564     15514
+   macro avg     0.6209    0.6179    0.6145     15514
+weighted avg     0.9552    0.9564    0.9552     15514
+```
