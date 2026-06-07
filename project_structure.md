@@ -92,7 +92,7 @@ d) `mixed_ru-kz`.
 Мы нуждались в модели, которая могла бы определять языковой тег (see the tagset [above](#text%20preprocessing)) для каждого токена в тексте. Для этого мы (до)обучили три модели: CRF, mBERT and XLM-RoBERTa. Процесс обучения см. в блокнотах `colab_notebooks/model_training/*`.
 
 Качество получившихся моделей:
-- KazRusCSW-crf
+- KazRusCSW-crf ([colab](https://colab.research.google.com/drive/1IaWapP60Fnzhd0O-WflETOpFnLyAKEDU?usp=sharing))
 ```
                precision    recall  f1-score   support
 
@@ -110,7 +110,7 @@ d) `mixed_ru-kz`.
 weighted avg      0.955     0.957     0.955     15514
 ```
 
-- KazRusCSW-mbert
+- KazRusCSW-mbert ([colab](https://colab.research.google.com/drive/1epAx_jsuEwBrdCQHRIaoOQildGdMvM0q?usp=sharing))
 ```
               precision    recall  f1-score   support
 
@@ -128,7 +128,7 @@ weighted avg      0.955     0.957     0.955     15514
 weighted avg     0.9555    0.9542    0.9541     15503
 ```
 
-- KazRusCSW-xlmroberta
+- KazRusCSW-xlmroberta ([colab](https://colab.research.google.com/drive/1k-P3M3FVL6XxgBD_IKz0QQS-hzbwLvOU?usp=sharing))
 ```
               precision    recall  f1-score   support
 
@@ -235,7 +235,7 @@ The analysis showed that we cannot infer purely from the probabilities whether t
 We needed a model that is able to determine the language tag (see the tagset [above](#text%20preprocessing)) for every token in text. For that, we tried three models: CRF, mBERT and XLM-RoBERTa. Details on training/finetuning can be found at `colab_notebooks/model_training`.
 
 Here are the metrics:
-- KazRusCSW-crf
+- KazRusCSW-crf ([colab](https://colab.research.google.com/drive/1IaWapP60Fnzhd0O-WflETOpFnLyAKEDU?usp=sharing))
 ```
                precision    recall  f1-score   support
 
@@ -253,7 +253,7 @@ Here are the metrics:
 weighted avg      0.955     0.957     0.955     15514
 ```
 
-- KazRusCSW-mbert
+- KazRusCSW-mbert ([colab](https://colab.research.google.com/drive/1epAx_jsuEwBrdCQHRIaoOQildGdMvM0q?usp=sharing))
 ```
               precision    recall  f1-score   support
 
@@ -271,7 +271,7 @@ weighted avg      0.955     0.957     0.955     15514
 weighted avg     0.9555    0.9542    0.9541     15503
 ```
 
-- KazRusCSW-xlmroberta
+- KazRusCSW-xlmroberta ([colab](https://colab.research.google.com/drive/1k-P3M3FVL6XxgBD_IKz0QQS-hzbwLvOU?usp=sharing))
 ```
               precision    recall  f1-score   support
 
