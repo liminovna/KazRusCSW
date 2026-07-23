@@ -25,7 +25,7 @@
 
 Более подробная информация о файлах в репозитории можно найти в файле [project_structure.md](project_structure.md).
 
-❗ Проект (и репозитории на github и huggingface) все еще в разработке, поэтому ссылка на текст работы и сам корпус будут опубликованы позже.
+Ссылка на работу: https://www.hse.ru/edu/vkr/1165807401
 
 ## Overview
 This repository contains code for the KazRusCSW project, which is carried out as part of a master's thesis in the Computational Linguistics program at HSE University, Moscow. The aim of this project is to gather and provide token-level annotation for documents containing Kazakh-Russian code-switching.
@@ -45,4 +45,4 @@ The repository contains notebooks for processing and analysis and supplementary 
 
 For detailed information on the structure of the project see [project_stucture.md](project_stucture.md).
 
-❗ The project is still in progress, the paper and the corpus itself will be published later.
+Link to the paper: https://www.hse.ru/edu/vkr/1165807401
